@@ -33,7 +33,7 @@ public class Identification extends JPanel {
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				HashMap<String, String> idPass = recupIdPass(id.getText(),password.getText());
-				JOptionPane.showMessageDialog(null,"identifiant : " + idPass.get("identifiant") + "\n et voici le mot de passe : " +idPass.get("motDePasse"));
+			//	JOptionPane.showMessageDialog(null,"identifiant : " + idPass.get("identifiant") + "\n et voici le mot de passe : " +idPass.get("motDePasse"));
 				AccesPageAccueil();
 			}
 		});

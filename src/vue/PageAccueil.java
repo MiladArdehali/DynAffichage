@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import model.AccesBDD;
+
 public class PageAccueil extends JPanel {
 
 	private JTextField accueil;

@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileView;
 
+import model.DonneeAffichage;
+
 	
 
 public class AjouterAffichage extends JPanel {
@@ -86,7 +88,7 @@ public class AjouterAffichage extends JPanel {
 		description= new JTextField();
 		description.setSize(700,40);
 		description.setLocation(50,450);
-		description.setText("Inscrire ici le nom de votre affichage");
+		description.setText("Inscrire ici un commentaire à afficher");
 		add(description);
 		
 		
@@ -107,8 +109,10 @@ public class AjouterAffichage extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// acces a la base de donnée, si l'enregistrement s'est fait sans probleme, retour d'un booleean avec la valuer true
+				DonneeAffichage donnee = new DonneeAffichage();
+				retourBDD = donnee.AjouterAffichage(nomAffichage.getText(), chemin.getText(), nomFichier.getText(), description.getText());
 				if (retourBDD == true){
+					JOptionPane.showMessageDialog(null,"enregistrement effectué avec succes dans la base de donnée");
 				changementVue();
 				retourBDD = false;
 				}else{

@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 public class Identification extends JPanel {
+	public static String identifiant;
 	private JTextField id;
 	private JTextField password;
 
@@ -35,20 +36,18 @@ public class Identification extends JPanel {
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AccesPageAccueil();
-				// PARTIE COMMENTE PENDANT LA PERIODE DE DEV; TEST EFFECTUE.
-				// RESLUTAT: OK
-				/*
-				 * if (verifLogin() == true) { AccesPageAccueil();
-				 * JOptionPane.showMessageDialog(null, "connecté en tant que " +
-				 * id.getText());
-				 * 
-				 * } else { JOptionPane.showMessageDialog(null,
-				 * "identifiant ou mot de passe incorrect"); }
-				 * 
-				 * }
-				 */
+
+				if (verifLogin() == true) {
+					AccesPageAccueil();
+					JOptionPane.showMessageDialog(null, "connecté en tant que " + id.getText());
+					identifiant = id.getText();
+
+				} else {
+					JOptionPane.showMessageDialog(null, "identifiant ou mot de passe incorrect");
+				}
+
 			}
+
 		});
 		btnValider.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnValider.setLocation(350, 500);

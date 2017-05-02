@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 public class AccesBDD {
 
+	
 	protected static Connection getConnection() {
 		Connection cnx = null;
 		String url = "jdbc:mysql://localhost/dynAffichage";
@@ -19,7 +20,6 @@ public class AccesBDD {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			cnx = DriverManager.getConnection(url, login, password);
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -52,4 +52,42 @@ public class AccesBDD {
 		return validation;
 	}
 
+	public boolean modifLogin(String newLogin, String oldLogin) {
+		Connection cnx = getConnection();
+		boolean verif = false;
+		PreparedStatement statement;
+
+		try {
+			statement = cnx.prepareStatement("UPDATE user SET identifiant = ? WHERE identifiant = ?");
+			statement.setString(1, newLogin);
+			statement.setString(2, oldLogin);
+			statement.executeUpdate();
+			verif = true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return verif;
+	}
+
+	public boolean modifPass(String newPass, String identifiant) {
+		Connection cnx = getConnection();
+		boolean verif = false;
+		PreparedStatement statement;
+
+		try {
+			statement = cnx.prepareStatement("UPDATE user SET motDePasse =? WHERE identifiant = ?");
+			statement.setString(1, newPass);
+			statement.setString(2, identifiant);
+			statement.executeUpdate();
+			verif = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return verif;
+	}
+	
 }

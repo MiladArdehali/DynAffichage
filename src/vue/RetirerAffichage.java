@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,11 +19,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
+import model.DonneeAffichage;
+
 public class RetirerAffichage extends JPanel{
 
 		boolean erreur = false;
 		ArrayList<String> tab = new ArrayList<>();
 		Graphics g;
+		boolean verif = false;
 
 	public RetirerAffichage() {
 		setLayout(null);
@@ -47,12 +51,30 @@ public class RetirerAffichage extends JPanel{
 			supprimer.setForeground(Color.WHITE);
 			add(supprimer);
 			
+			supprimer.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(verif=true){
+					suppressionVue(listeAffichage.getText());
+					JOptionPane.showMessageDialog(null,
+							"suppression effectué avec succes");
+					changementVue();
+					verif=false;
+					}else
+						JOptionPane.showMessageDialog(null,
+								"erreur lors de l'enregistrement, \n veuillez verifier vos informations");
+					
+					
+				}
+			});
+			
 						
 		}
 		
 		
-		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBounds(50, 500, 200, 40);
+		JButton btnAnnuler = new JButton("Retour Menu");
+		btnAnnuler.setBounds(300, 500, 200, 40);
 		btnAnnuler.addActionListener(new ActionListener() {
 			
 			@Override
@@ -61,23 +83,6 @@ public class RetirerAffichage extends JPanel{
 			}
 		});
 		add(btnAnnuler);
-		
-		JButton btnValider = new JButton("Valider");
-		btnValider.setBounds(550, 500, 200, 40);
-		btnValider.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (suppressionVue()== true){
-					changementVue();
-					erreur = false;
-				}else{
-					JOptionPane.showMessageDialog(null,"erreur lors de l'enregistrement, \n veuillez verifier vos informations");
-				}	
-				
-			}
-		});
-		add(btnValider);
 		
 	}
 	
@@ -93,22 +98,19 @@ public class RetirerAffichage extends JPanel{
 	
 	private ArrayList<String> chargementAffichage() {
 		ArrayList<String> tab = new ArrayList<>();
-		tab.add("un");
-		tab.add("deux");
-		tab.add("un");
-		tab.add("deux");
-		tab.add("un");
-		tab.add("deux");
-		tab.add("un");
-		tab.add("deux");
-		//Nous ferrons appel ici à la methode permettant de recuperer les affichage. ils seront tous place dans une arrayList.
-			return tab;
+		HashMap<String, ArrayList<String>> liste = new HashMap<>();
+		DonneeAffichage valeur = new DonneeAffichage();
+		liste = valeur.listeAffichage();
+		tab = liste.get("nomAffichage");
+		return tab;
 	}
 	
-	private boolean suppressionVue() {
-		//methode d'acces à la base de donnée afin de supprimer un affichage
-		//si l'acces a la base de donée a reussit alors le boolen tenvoir true sinon en ca d'eerer le boolen renvoit false
-		return erreur;
+	private boolean suppressionVue(String nomAffichage) {
+		boolean verif= false;
+		DonneeAffichage da = new DonneeAffichage();
+		verif=da.suppressionVue(nomAffichage);
+		
+		
+		return verif;
 	}
-	
 }

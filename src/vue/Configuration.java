@@ -2,8 +2,12 @@ package vue;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -50,8 +54,41 @@ public class Configuration extends JPanel {
 		lblAccesServeur.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(lblAccesServeur);
 
-		//JOptionPane.showMessageDialog(null, "nous sommes maintenant qur le nouveau panel");
+		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.setBounds(50, 500, 200, 40);
+		btnAnnuler.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				changementVue();
+			}
+		});
+		add(btnAnnuler);
+		
+		JButton btnValider = new JButton("Valider");
+		btnValider.setBounds(550, 500, 200, 40);
+		btnValider.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "methode d'enregistrement des motiifs non faite ");
+				
+			}
+		});
+		add(btnValider);
 
+
+	}
+	
+	private void changementVue() {
+		PageAccueil pa = new PageAccueil();
+		this.removeAll();
+		this.repaint();
+		this.revalidate();
+
+		this.add(pa);
+		this.repaint();
+		this.revalidate();
 	}
 
 }

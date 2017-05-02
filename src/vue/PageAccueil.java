@@ -36,7 +36,7 @@ public class PageAccueil extends JPanel {
 		add(accueil);
 
 		JButton btnConfiguration = new JButton("Configuration");
-		btnConfiguration.setSize(100, 20);
+		btnConfiguration.setSize(130, 20);
 		btnConfiguration.setLocation(650, 20);
 		btnConfiguration.setBackground(Color.ORANGE);
 		btnConfiguration.addActionListener(new ActionListener() {

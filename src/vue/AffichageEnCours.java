@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import model.DonneeAffichage;
@@ -28,15 +26,16 @@ public class AffichageEnCours extends JPanel {
 	public AffichageEnCours() {
 		setLayout(null);
 
-		this.setSize(800, 600);
+		this.setSize(800,600);
+		// Pour un affichage trop important de la liste des affiches: ajouter cette ligne à la place de la precedente
+		// this.setPreferredSize(new Dimension(800, 600));  
 		this.setLocation(0, 0);
-		JScrollPane fenetreResultat = new JScrollPane();
-		fenetreResultat.setPreferredSize(new Dimension(200, 300));
+
 		tab = chargementAffichage();
 		for (int i = 0; i < tab.size(); i++) {
 			JLabel listeAffichage = new JLabel("Affichage n° " + i + " :");
 			listeAffichage.setSize(200, 20);
-			listeAffichage.setLocation(50, i * 50);
+			listeAffichage.setLocation(50, (i + 2) * 50);
 			listeAffichage.setText(tab.get(i));
 			add(listeAffichage);
 
@@ -46,18 +45,18 @@ public class AffichageEnCours extends JPanel {
 					int state = itemEvent.getStateChange();
 					if (state == ItemEvent.SELECTED) {
 						toggleButton.setText("Activé");
-						active.put(listeAffichage.getText(),1);
+						active.put(listeAffichage.getText(), 1);
 
 					} else {
 						toggleButton.setText("Desactivé");
 						toggleButton.setBackground(Color.ORANGE);
-						active.put(listeAffichage.getText(),0);
+						active.put(listeAffichage.getText(), 0);
 
 					}
 				}
 			};
 
-			toggleButton.setLocation(450, i * 50 + 5);
+			toggleButton.setLocation(450, (i + 2) * 50 + 5);
 			toggleButton.setSize(180, 20);
 			toggleButton.addItemListener(itemListener);
 			add(toggleButton);
@@ -65,7 +64,8 @@ public class AffichageEnCours extends JPanel {
 		}
 
 		JButton btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBounds(50, 500, 200, 40);
+		btnAnnuler.setSize(200, 40);
+		btnAnnuler.setLocation(50, 10);
 		btnAnnuler.addActionListener(new ActionListener() {
 
 			@Override
@@ -73,22 +73,23 @@ public class AffichageEnCours extends JPanel {
 				changementVue();
 			}
 		});
+
 		add(btnAnnuler);
 
 		JButton btnValider = new JButton("Valider");
-		btnValider.setBounds(550, 500, 200, 40);
+		btnValider.setSize(200, 40);
+		btnValider.setLocation(450, 10);
 		btnValider.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (activationVue() == true) {
-					JOptionPane.showMessageDialog(null,
-							"Modification effectuée avec succés");
+					JOptionPane.showMessageDialog(null, "Modification effectuée avec succés");
 					changementVue();
 					validation = false;
 				} else {
 					JOptionPane.showMessageDialog(null,
-							"erreur lors de l'enregistrement, \n veuillez verifier vos informations");
+							"erreur lors de l'enregistrement, veuillez verifier vos informations");
 				}
 
 			}
@@ -105,6 +106,7 @@ public class AffichageEnCours extends JPanel {
 		this.add(pa);
 		this.repaint();
 		this.revalidate();
+
 	}
 
 	private ArrayList<String> chargementAffichage() {
@@ -118,8 +120,8 @@ public class AffichageEnCours extends JPanel {
 
 	private boolean activationVue() {
 		boolean validation = false;
-DonneeAffichage da = new DonneeAffichage();
-validation = da.etatAffichage(active);
+		DonneeAffichage da = new DonneeAffichage();
+		validation = da.etatAffichage(active);
 		return validation;
 	}
 

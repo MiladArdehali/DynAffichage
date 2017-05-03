@@ -43,27 +43,36 @@ public class DonneeAffichage {
 		ArrayList<String> nom = new ArrayList<>();
 		ArrayList<String> fichier = new ArrayList<>();
 		ArrayList<String> commentaire = new ArrayList<>();
+		ArrayList<String> active = new ArrayList<>();
 		HashMap<String, ArrayList<String>> liste = new HashMap<>();
 
 		PreparedStatement statement;
 		ResultSet result;
 
 		try {
-			statement = cnx.prepareStatement("SELECT nomAffichage, nomFichier, commentaire FROM content");
+			statement = cnx.prepareStatement("SELECT nomAffichage, nomFichier, commentaire, active FROM content");
 			result = statement.executeQuery();
 
 			while (result.next()) {
 				String nomAffichage = result.getString("nomAffichage");
 				nom.add(nomAffichage);
+				
 				String nomFichier = result.getString("nomFichier");
-				;
 				fichier.add(nomFichier);
+				
 				String listecommentaire = result.getString("commentaire");
 				commentaire.add(listecommentaire);
+				
+				String listeActive = result.getString("active");
+				active.add(listeActive);
+				
+				
+				
 			}
 			liste.put("nomAffichage", nom);
 			liste.put("nomFichier", fichier);
 			liste.put("commentaire", commentaire);
+			liste.put("active", active);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

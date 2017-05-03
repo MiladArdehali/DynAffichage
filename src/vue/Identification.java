@@ -1,28 +1,16 @@
 package vue;
 
 import javax.swing.JPanel;
-
-import java.awt.Dimension;
-
 import javax.swing.JLabel;
-
-import java.awt.Font;
-import java.awt.Panel;
-
-import javax.swing.JFrame;
 import javax.swing.SwingConstants;
-
 import model.AccesBDD;
-
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JOptionPane;
 
 public class Identification extends JPanel {
@@ -32,6 +20,14 @@ public class Identification extends JPanel {
 
 	public Identification() {
 		setLayout(null);
+		
+		JLabel img = new JLabel("");
+		Image image = new ImageIcon(this.getClass().getResource("/identification.gif")).getImage();
+		img.setIcon(new ImageIcon(image));
+		img.setSize(400, 250);
+		img.setLocation(550, 180);
+		add(img);
+		
 
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
@@ -53,7 +49,33 @@ public class Identification extends JPanel {
 		btnValider.setLocation(350, 500);
 		btnValider.setSize(100, 40);
 		add(btnValider);
+		
+		JButton btnConfiguration = new JButton("Configuration");
+		btnConfiguration.setSize(130, 20);
+		btnConfiguration.setLocation(650, 20);
+		btnConfiguration.setBackground(Color.ORANGE);
+		btnConfiguration.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				affichageConfiguration();
+			}
+		});
+		add(btnConfiguration);
+
+		JButton btnInfo = new JButton("Info / Contact");
+		btnInfo.setSize(130, 20);
+		btnInfo.setLocation(650, 50);
+		btnInfo.setBackground(Color.GREEN);
+		btnInfo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				affichageInfo();
+			}
+		});
+		add(btnInfo);
+		
 		JLabel lblBienvenue = new JLabel("Bienvenue dans votre interface");
 		lblBienvenue.setSize(800, 50);
 		lblBienvenue.setLocation(0, 0);
@@ -95,6 +117,16 @@ public class Identification extends JPanel {
 
 		return validation;
 	}
+	
+	private void affichageConfiguration() {
+		Configuration pc = new Configuration();
+		appelDessinFenetre(pc);
+	}
+	
+	private void affichageInfo() {
+		Info info = new Info();
+		appelDessinFenetre(info);
+	}
 
 	private void AccesPageAccueil() {
 		PageAccueil pa = new PageAccueil();
@@ -105,6 +137,16 @@ public class Identification extends JPanel {
 		this.add(pa);
 		this.repaint();
 		this.revalidate();
+	}
+	
+	private void appelDessinFenetre(JPanel fenetre) {
+		this.removeAll();
+		this.repaint();
+		this.revalidate();
+		this.add(fenetre);
+		this.repaint();
+		this.revalidate();
+
 	}
 
 }

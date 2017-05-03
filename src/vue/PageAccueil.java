@@ -1,27 +1,42 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import model.AccesBDD;
-
 public class PageAccueil extends JPanel {
+	
 
+	
 	private JTextField accueil;
 	private Font f;
 
 	public PageAccueil() {
+
 		setLayout(null);
 
-		this.setSize(800, 600);
+		
+		this.setSize(800,600);
 		this.setLocation(0, 0);
+		
+		JLabel img = new JLabel("");
+		Image image = new ImageIcon(this.getClass().getResource("/dynafficheur.png")).getImage();
+		img.setIcon(new ImageIcon(image));
+		img.setSize(400, 250);
+		img.setLocation(10, 180);
+		add(img);
+
 
 		f = new Font("Courrier", Font.BOLD, 20);
 
@@ -35,18 +50,19 @@ public class PageAccueil extends JPanel {
 		accueil.setEditable(false);
 		add(accueil);
 
-		JButton btnConfiguration = new JButton("Configuration");
-		btnConfiguration.setSize(130, 20);
-		btnConfiguration.setLocation(650, 20);
-		btnConfiguration.setBackground(Color.ORANGE);
-		btnConfiguration.addActionListener(new ActionListener() {
+		
+		JButton btnDeconnexion = new JButton("Deconnection");
+		btnDeconnexion.setSize(130, 20);
+		btnDeconnexion.setLocation(650, 20);
+		btnDeconnexion.setBackground(Color.CYAN);
+		btnDeconnexion.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				affichageConfiguration();
+				deconnection();
 			}
 		});
-		add(btnConfiguration);
+		add(btnDeconnexion);
 
 		JButton btnAffichageEnCours = new JButton("Affichage en cours");
 		btnAffichageEnCours.setBounds(300, 100, 200, 40);
@@ -93,15 +109,31 @@ public class PageAccueil extends JPanel {
 		add(btnGestionIdentification);
 
 	}
+	
+	private void effacerEcran() {
+		this.removeAll();
+		this.repaint();
+		this.revalidate();
 
-	private void affichageConfiguration() {
-		Configuration pc = new Configuration();
-		appelDessinFenetre(pc);
 	}
 
+
 	private void affichageEnCours() {
+		
 		AffichageEnCours ae = new AffichageEnCours();
-		appelDessinFenetre(ae);
+			// Pour ajouter un Scroll il faut desactiver les commentaires qui suivent
+			//JScrollPane fenetreResultat = new JScrollPane(ae);
+			//fenetreResultat.setBounds(0, 0, 795, 575);
+		
+		this.removeAll();
+		this.repaint();
+		this.revalidate();
+			// this.add(fenetreResultat);
+		this.add(ae);
+		this.repaint();
+		this.revalidate();
+		
+		
 
 	}
 
@@ -132,5 +164,18 @@ public class PageAccueil extends JPanel {
 		this.revalidate();
 
 	}
-
+	
+	private void deconnection() {
+			Identification pa = new Identification();
+			this.removeAll();
+			this.repaint();
+			this.revalidate();
+			pa.setSize(800, 600);
+			pa.setLocation(0, 0);
+			this.add(pa);
+			this.repaint();
+			this.revalidate();
+		
+	}
+	
 }

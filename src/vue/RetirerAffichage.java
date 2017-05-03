@@ -39,12 +39,12 @@ public class RetirerAffichage extends JPanel{
 		for(int i=0; i<tab.size(); i++ ){
 			JLabel listeAffichage = new JLabel("Affichage n° "+i+" :");
 			listeAffichage.setSize(200,20);
-			listeAffichage.setLocation(50,i*50+5);
+			listeAffichage.setLocation(50,(i+2)*50+5);
 			listeAffichage.setText(tab.get(i));
 			add(listeAffichage);
 			
 			JButton supprimer = new JButton();
-			supprimer.setLocation(450,i*50+5);
+			supprimer.setLocation(450,(i+2)*50+5);
 			supprimer.setSize(100,30);
 			supprimer.setBackground(Color.RED);
 			supprimer.setText("Supprimer");
@@ -74,7 +74,7 @@ public class RetirerAffichage extends JPanel{
 		
 		
 		JButton btnAnnuler = new JButton("Retour Menu");
-		btnAnnuler.setBounds(300, 500, 200, 40);
+		btnAnnuler.setBounds(300, 20, 200, 40);
 		btnAnnuler.addActionListener(new ActionListener() {
 			
 			@Override

@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AccesBDD {
+		
 
-	
 	protected static Connection getConnection() {
 		Connection cnx = null;
-		String url = "jdbc:mysql://localhost/dynAffichage";
+		String url = "jdbc:mysql://localhost/dynaffichage";
 		String login = "root";
 		String password = "formation";
 

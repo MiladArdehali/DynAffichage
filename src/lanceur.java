@@ -1,14 +1,12 @@
-import java.awt.Color;
+import java.awt.SplashScreen;
 
-import javax.swing.JPanel;
-
-import model.AccesBDD;
 import vue.Fenetre;
-import vue.Identification;
+import vue.Splash;
 
 public class lanceur {
-
+	
 	public static void main(String[] args) {
+		Splash sp = new Splash();
 		Fenetre f = new Fenetre();
 	}
 }

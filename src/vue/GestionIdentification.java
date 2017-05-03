@@ -1,10 +1,13 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,6 +32,13 @@ public class GestionIdentification extends JPanel {
 
 		this.setSize(800, 600);
 		this.setLocation(0, 0);
+		
+		JLabel img = new JLabel("");
+		Image image = new ImageIcon(this.getClass().getResource("/logomodif.png")).getImage();
+		img.setIcon(new ImageIcon(image));
+		img.setSize(300, 250);
+		img.setLocation(10, 180);
+		add(img);
 
 		JLabel lblPage = new JLabel("Votre identifiant actuel");
 		lblPage.setSize(800, 50);
@@ -64,7 +74,7 @@ public class GestionIdentification extends JPanel {
 		add(identifiant);
 
 		JButton btnConfirmer = new JButton("Valider votre nouvel identifiant");
-		btnConfirmer.setBounds(300, 110, 280, 40);
+		btnConfirmer.setBounds(300, 110, 250, 40);
 		btnConfirmer.addActionListener(new ActionListener() {
 
 			@Override
@@ -162,7 +172,7 @@ public class GestionIdentification extends JPanel {
 		add(confirmationMotDePasse);
 
 		JButton btnConfirmerMDP = new JButton("Valider votre nouveau mot de passe");
-		btnConfirmerMDP.setBounds(300, 400, 280, 40);
+		btnConfirmerMDP.setBounds(300, 400, 250, 40);
 		btnConfirmerMDP.addActionListener(new ActionListener() {
 
 			@Override
@@ -181,7 +191,7 @@ public class GestionIdentification extends JPanel {
 		add(btnConfirmerMDP);
 
 		JButton btnAnnuler = new JButton("retour menu");
-		btnAnnuler.setBounds(300, 500, 200, 40);
+		btnAnnuler.setBounds(300, 500, 260, 40);
 		btnAnnuler.addActionListener(new ActionListener() {
 
 			@Override

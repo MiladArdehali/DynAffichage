@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class AccesBDD {
-		
 
 	protected static Connection getConnection() {
 		Connection cnx = null;
@@ -82,12 +79,12 @@ public class AccesBDD {
 			statement.setString(2, identifiant);
 			statement.executeUpdate();
 			verif = true;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return verif;
 	}
-	
+
 }

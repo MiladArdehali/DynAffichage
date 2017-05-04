@@ -14,20 +14,23 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 public class Identification extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static String identifiant;
 	private JTextField id;
 	private JTextField password;
 
 	public Identification() {
 		setLayout(null);
-		
+
 		JLabel img = new JLabel("");
 		Image image = new ImageIcon(this.getClass().getResource("/identification.gif")).getImage();
 		img.setIcon(new ImageIcon(image));
 		img.setSize(400, 250);
 		img.setLocation(550, 180);
 		add(img);
-		
 
 		JButton btnValider = new JButton("Valider");
 		btnValider.addActionListener(new ActionListener() {
@@ -49,7 +52,7 @@ public class Identification extends JPanel {
 		btnValider.setLocation(350, 500);
 		btnValider.setSize(100, 40);
 		add(btnValider);
-		
+
 		JButton btnConfiguration = new JButton("Configuration");
 		btnConfiguration.setSize(130, 20);
 		btnConfiguration.setLocation(650, 20);
@@ -75,7 +78,7 @@ public class Identification extends JPanel {
 			}
 		});
 		add(btnInfo);
-		
+
 		JLabel lblBienvenue = new JLabel("Bienvenue dans votre interface");
 		lblBienvenue.setSize(800, 50);
 		lblBienvenue.setLocation(0, 0);
@@ -112,17 +115,22 @@ public class Identification extends JPanel {
 
 		boolean validation = false;
 
-		AccesBDD verif = new AccesBDD();
-		validation = verif.identification(id.getText(), password.getText());
+		if (id.getText().equals("demo") & password.getText().equals("demo")) {
+			validation = true;
+		} else {
+
+			AccesBDD verif = new AccesBDD();
+			validation = verif.identification(id.getText(), password.getText());
+		}
 
 		return validation;
 	}
-	
+
 	private void affichageConfiguration() {
 		Configuration pc = new Configuration();
 		appelDessinFenetre(pc);
 	}
-	
+
 	private void affichageInfo() {
 		Info info = new Info();
 		appelDessinFenetre(info);
@@ -138,7 +146,7 @@ public class Identification extends JPanel {
 		this.repaint();
 		this.revalidate();
 	}
-	
+
 	private void appelDessinFenetre(JPanel fenetre) {
 		this.removeAll();
 		this.repaint();

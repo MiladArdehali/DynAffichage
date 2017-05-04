@@ -12,7 +12,11 @@ import javax.swing.JWindow;
 
 public class Splash extends JWindow {
 
-	int delay = 0;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int delay = 5000;
 
 	public Splash() {
 		dispose(delay);
@@ -40,6 +44,10 @@ public class Splash extends JWindow {
 	}
 
 	class SplashPicture extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		Image img;
 
 		public SplashPicture(String file) {

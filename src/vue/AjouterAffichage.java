@@ -21,6 +21,10 @@ import model.DonneeAffichage;
 
 public class AjouterAffichage extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextField chemin, nomFichier, nomAffichage, description;
 	FileView apercu;
 	File image;
@@ -130,34 +134,34 @@ public class AjouterAffichage extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(nomAffichage.getText().trim().equals("Inscrire ici le nom de votre affichage") | nomFichier.getText().trim().equals("Nom du fichier selectionné")){
+				if (nomAffichage.getText().trim().equals("Inscrire ici le nom de votre affichage")
+						| nomFichier.getText().trim().equals("Nom du fichier selectionné")) {
 					JOptionPane.showMessageDialog(null, "Nom d'affichage ou fichier image oublié !");
-				}else{
-				
-				DonneeAffichage donnee = new DonneeAffichage();
-				retourBDD = donnee.AjouterAffichage(nomAffichage.getText(), chemin.getText(), nomFichier.getText(),
-						description.getText());
-				if (retourBDD == true) {
-					JOptionPane.showMessageDialog(null, "enregistrement effectué avec succes dans la base de donnée");
-					changementVue();
-					retourBDD = false;
 				} else {
-					JOptionPane.showMessageDialog(null,
-							"erreur lors de l'enregistrement, veuillez verifier vos informations");
+
+					DonneeAffichage donnee = new DonneeAffichage();
+					retourBDD = donnee.AjouterAffichage(nomAffichage.getText(), chemin.getText(), nomFichier.getText(),
+							description.getText());
+					if (retourBDD == true) {
+						JOptionPane.showMessageDialog(null,
+								"enregistrement effectué avec succes dans la base de donnée");
+						changementVue();
+						retourBDD = false;
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"erreur lors de l'enregistrement, veuillez verifier vos informations");
+					}
 				}
-			}
 			}
 		});
 		add(btnValider);
-
-		
 
 		JLabel img = new JLabel("");
 		Image image = new ImageIcon(this.getClass().getResource("/moniteur.png")).getImage();
 		img.setIcon(new ImageIcon(image));
 		img.setSize(800, 450);
 		img.setLocation(0, 180);
-		img.setHorizontalAlignment(img.CENTER);
+		img.setHorizontalAlignment(SwingConstants.CENTER);
 		add(img);
 
 	}

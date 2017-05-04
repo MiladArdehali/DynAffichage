@@ -56,18 +56,16 @@ public class DonneeAffichage {
 			while (result.next()) {
 				String nomAffichage = result.getString("nomAffichage");
 				nom.add(nomAffichage);
-				
+
 				String nomFichier = result.getString("nomFichier");
 				fichier.add(nomFichier);
-				
+
 				String listecommentaire = result.getString("commentaire");
 				commentaire.add(listecommentaire);
-				
+
 				String listeActive = result.getString("active");
 				active.add(listeActive);
-				
-				
-				
+
 			}
 			liste.put("nomAffichage", nom);
 			liste.put("nomFichier", fichier);
@@ -83,14 +81,12 @@ public class DonneeAffichage {
 
 	public boolean etatAffichage(HashMap<String, Integer> etat) {
 		boolean verif = false;
-		// HashMap<String, Integer> valeur = etat;
 		PreparedStatement statement;
-		ResultSet result;
 
 		try {
 
-			Set nomAffichage = etat.keySet();
-			Iterator it = nomAffichage.iterator();
+			Set<String> nomAffichage = etat.keySet();
+			Iterator<String> it = nomAffichage.iterator();
 			while (it.hasNext()) {
 				Object key = it.next();
 				Object valeur = etat.get(key);
@@ -104,7 +100,6 @@ public class DonneeAffichage {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -127,5 +122,4 @@ public class DonneeAffichage {
 		return verif;
 	}
 
-	
 }

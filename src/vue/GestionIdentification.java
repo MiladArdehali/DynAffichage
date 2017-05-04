@@ -19,6 +19,10 @@ import model.AccesBDD;
 
 public class GestionIdentification extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField identifiant;
 	private JTextField ancienMotDePasse;
 	private JTextField nouveauMotDePasse;
@@ -32,7 +36,7 @@ public class GestionIdentification extends JPanel {
 
 		this.setSize(800, 600);
 		this.setLocation(0, 0);
-		
+
 		JLabel img = new JLabel("");
 		Image image = new ImageIcon(this.getClass().getResource("/logomodif.png")).getImage();
 		img.setIcon(new ImageIcon(image));
@@ -82,7 +86,7 @@ public class GestionIdentification extends JPanel {
 				enregistrementNouvelIdentifiant(identifiant.getText());
 				if (verif) {
 					JOptionPane.showMessageDialog(null, "changement d'identifiant fait avec succes");
-					Fenetre f = new Fenetre();
+					new Fenetre();
 					verif = false;
 				} else {
 					JOptionPane.showMessageDialog(null,
@@ -216,7 +220,7 @@ public class GestionIdentification extends JPanel {
 	private boolean enregistrementNouvelIdentifiant(String newLogin) {
 
 		verif = da.modifLogin(newLogin, oldLogin);
-		AccesBDD adb = new AccesBDD();
+		new AccesBDD();
 		return verif;
 	}
 

@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,6 +18,10 @@ import model.DonneeAffichage;
 
 public class AffichageEnCours extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	boolean validation = false;
 	ArrayList<String> tab = new ArrayList<>();
 	HashMap<String, Integer> active = new HashMap<>();
@@ -26,9 +29,10 @@ public class AffichageEnCours extends JPanel {
 	public AffichageEnCours() {
 		setLayout(null);
 
-		this.setSize(800,600);
-		// Pour un affichage trop important de la liste des affiches: ajouter cette ligne à la place de la precedente
-		// this.setPreferredSize(new Dimension(800, 600));  
+		this.setSize(800, 600);
+		// Pour un affichage trop important de la liste des affiches: ajouter
+		// cette ligne à la place de la precedente
+		// this.setPreferredSize(new Dimension(800, 600));
 		this.setLocation(0, 0);
 
 		tab = chargementAffichage();
